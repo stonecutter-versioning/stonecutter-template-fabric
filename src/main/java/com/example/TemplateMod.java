@@ -11,6 +11,7 @@ public class TemplateMod implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("template");
     public static final String VERSION = /*$ mod_version*/ "0.1.0";
 
+
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.

@@ -1,6 +1,6 @@
 plugins {
     id("dev.kikugie.stonecutter")
-    id("fabric-loom") version "1.7-SNAPSHOT" apply false
+    id("fabric-loom") version "1.9-SNAPSHOT" apply false
     //id("dev.kikugie.j52j") version "1.0.2" apply false // Enables asset processing by writing json5 files
     //id("me.modmuss50.mod-publish-plugin") version "0.7.+" apply false // Publishes builds to hosting websites
 }
@@ -20,7 +20,7 @@ stonecutter registerChiseled tasks.register("chiseledPublishMods", stonecutter.c
 }
 */
 
-stonecutter configureEach {
+stonecutter parameters {
     /*
     See src/main/java/com/example/TemplateMod.java
     and https://stonecutter.kikugie.dev/
@@ -30,6 +30,6 @@ stonecutter configureEach {
     // Constants add variables available in conditions
     const("release", property("mod.id") != "template")
     // Dependencies add targets to check versions against
-    // Using `project.property()` in this block gets the versioned property
-    dependency("fapi", project.property("deps.fabric_api").toString())
+    // Using `node.property()` in this block gets the versioned property
+    dependency("fapi", node!!.property("deps.fabric_api").toString())
 }
