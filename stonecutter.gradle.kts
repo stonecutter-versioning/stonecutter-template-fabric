@@ -1,6 +1,6 @@
 plugins {
     id("dev.kikugie.stonecutter")
-    id("fabric-loom") version "1.9-SNAPSHOT" apply false
+    id("fabric-loom") version "1.10-SNAPSHOT" apply false
     //id("dev.kikugie.j52j") version "1.0.2" apply false // Enables asset processing by writing json5 files
     //id("me.modmuss50.mod-publish-plugin") version "0.7.+" apply false // Publishes builds to hosting websites
 }
@@ -31,5 +31,5 @@ stonecutter parameters {
     const("release", property("mod.id") != "template")
     // Dependencies add targets to check versions against
     // Using `node.property()` in this block gets the versioned property
-    dependency("fapi", node!!.property("deps.fabric_api").toString())
+    dependency("fapi", node!!.project.property("deps.fabric_api").toString())
 }
