@@ -80,7 +80,7 @@ tasks {
     register<Copy>("buildAndCollect") {
         group = "build"
         from(remapJar.map { it.archiveFile }, remapSourcesJar.map { it.archiveFile })
-        into(rootProject.layout.buildDirectory.file("libs/${property("mod.version")}"))
+        into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
     }
 }
