@@ -61,16 +61,16 @@ java {
 
 tasks {
     processResources {
-        inputs.property("id", property("mod.id"))
-        inputs.property("name", property("mod.name"))
-        inputs.property("version", property("mod.version"))
-        inputs.property("minecraft", property("mod.mc_dep"))
+        inputs.property("id", project.property("mod.id"))
+        inputs.property("name", project.property("mod.name"))
+        inputs.property("version", project.property("mod.version"))
+        inputs.property("minecraft", project.property("mod.mc_dep"))
 
         val props = mapOf(
-            "id" to property("mod.id"),
-            "name" to property("mod.id"),
-            "version" to property("mod.id"),
-            "minecraft" to property("mod.mc_dep")
+            "id" to project.property("mod.id"),
+            "name" to project.property("mod.id"),
+            "version" to project.property("mod.id"),
+            "minecraft" to project.property("mod.mc_dep")
         )
 
         filesMatching("fabric.mod.json") { expand(props) }
