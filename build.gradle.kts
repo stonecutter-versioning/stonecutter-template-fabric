@@ -5,7 +5,6 @@ plugins {
 }
 
 version = "${property("mod.version")}+${stonecutter.current.version}"
-group = property("mod.group") as String
 base.archivesName = property("mod.id") as String
 
 repositories {
