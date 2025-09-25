@@ -8,12 +8,12 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.7.10"
+    id("dev.kikugie.stonecutter") version "0.8-dev.1"
 }
 
 stonecutter {
     create(rootProject) {
-        versions("1.20.1", "1.21.1", "1.21.8")
+        versions("1.21.8")
         vcsVersion = "1.21.8"
     }
 }
