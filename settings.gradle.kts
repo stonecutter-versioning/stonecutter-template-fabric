@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        mavenLocal()
         mavenCentral()
         gradlePluginPortal()
         maven("https://maven.fabricmc.net/")
@@ -8,7 +9,7 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.8-dev.1"
+    id("dev.kikugie.stonecutter") version "0.8-dev.2"
 }
 
 stonecutter {
