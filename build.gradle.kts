@@ -1,7 +1,7 @@
 plugins {
     `maven-publish`
     id("fabric-loom")
-    // id("me.modmuss50.mod-publish-plugin")
+//    id("me.modmuss50.mod-publish-plugin")
 }
 
 version = "${property("mod.version")}+${stonecutter.current.version}"
@@ -33,7 +33,7 @@ dependencies {
     mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
 
-    fapi("fabric-lifecycle-events-v1",)
+    fapi("fabric-lifecycle-events-v1", "fabric-resource-loader-v0", "fabric-content-registries-v0")
 }
 
 loom {
@@ -86,30 +86,30 @@ tasks {
 
 /*
 publishMods {
-    file = tasks.remapJar.get().archiveFile
-    additionalFiles.from(tasks.remapSourcesJar.get().archiveFile)
-    displayName = "${mod.name} ${mod.version} for $mcVersion"
-    version = mod.version
+    file = tasks.remapJar.map { it.archiveFile.get() }
+    additionalFiles.from(tasks.remapSourcesJar.map { it.archiveFile.get() })
+    displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version}"
+    version = property("mod.version") as String
     changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
     modLoaders.add("fabric")
 
-    dryRun = providers.environmentVariable("MODRINTH_TOKEN")
-        .getOrNull() == null || providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null
+    dryRun = providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
+        || providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null
 
     modrinth {
-        projectId = property("publish.modrinth").toString()
+        projectId = property("publish.modrinth") as String
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(mcVersion)
+        minecraftVersions.add(stonecutter.current.version)
         requires {
             slug = "fabric-api"
         }
     }
 
     curseforge {
-        projectId = property("publish.curseforge").toString()
+        projectId = property("publish.curseforge") as String
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        minecraftVersions.add(mcVersion)
+        minecraftVersions.add(stonecutter.current.version)
         requires {
             slug = "fabric-api"
         }
@@ -130,9 +130,9 @@ publishing {
 
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = "${property("mod.group")}.${mod.id}"
-            artifactId = mod.version
-            version = mcVersion
+            groupId = "${property("mod.group")}.${property("mod.id")}"
+            artifactId = property("mod.version") as String
+            version = stonecutter.current.version
 
             from(components["java"])
         }
