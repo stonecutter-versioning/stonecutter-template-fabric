@@ -1,7 +1,8 @@
 plugins {
-    `maven-publish`
     id("fabric-loom")
-//    id("me.modmuss50.mod-publish-plugin")
+
+    // `maven-publish`
+    // id("me.modmuss50.mod-publish-plugin")
 }
 
 version = "${property("mod.version")}+${stonecutter.current.version}"
@@ -85,10 +86,11 @@ tasks {
 }
 
 /*
+// Publishes builds to Modrinth and Curseforge with changelog from the CHANGELOG.md file
 publishMods {
     file = tasks.remapJar.map { it.archiveFile.get() }
     additionalFiles.from(tasks.remapSourcesJar.map { it.archiveFile.get() })
-    displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version}"
+    displayName = "${property("mod.name")} ${property("mod.version")} for ${property("mod.mc_title")}"
     version = property("mod.version") as String
     changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
@@ -100,7 +102,7 @@ publishMods {
     modrinth {
         projectId = property("publish.modrinth") as String
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(stonecutter.current.version)
+        minecraftVersions.addAll(property("mod.mc_targets").toString().split(' '))
         requires {
             slug = "fabric-api"
         }
@@ -109,18 +111,21 @@ publishMods {
     curseforge {
         projectId = property("publish.curseforge") as String
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        minecraftVersions.add(stonecutter.current.version)
+        minecraftVersions.addAll(property("mod.mc_targets").toString().split(' '))
         requires {
             slug = "fabric-api"
         }
     }
 }
-*/
+ */
 /*
+// Publishes builds to a maven repository under `com.example:template:0.1.0+mc`
 publishing {
     repositories {
-        maven("...") {
-            name = "..."
+        maven("https://maven.example.com/releases") {
+            name = "myMaven"
+            // To authenticate, create `myMavenUsername` and `myMavenPassword` properties in your Gradle home properties.
+            // See https://stonecutter.kikugie.dev/wiki/tips/properties#defining-properties
             credentials(PasswordCredentials::class.java)
             authentication {
                 create<BasicAuthentication>("basic")
@@ -131,11 +136,11 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "${property("mod.group")}.${property("mod.id")}"
-            artifactId = property("mod.version") as String
-            version = stonecutter.current.version
+            artifactId = property("mod.id") as String
+            version = project.version
 
             from(components["java"])
         }
     }
 }
-*/
+ */
