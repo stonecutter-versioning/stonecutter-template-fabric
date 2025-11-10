@@ -8,8 +8,8 @@
     "Me!"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://stonecutter.kikugie.dev/",
+    "sources": "https://codeberg.org/stonecutter/template-fabric"
   },
   "license": "CC0-1.0",
   "icon": "assets/template/icon.png",
@@ -23,7 +23,7 @@
     "template.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16",
+    "fabricloader": ">=0.17",
     "minecraft": "${minecraft}"
   }
 }

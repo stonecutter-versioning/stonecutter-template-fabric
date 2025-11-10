@@ -1,7 +1,7 @@
 package com.example;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,12 +29,12 @@ public class TemplateMod implements ModInitializer {
     }
 
     /**
-     * Adapts to the {@link Identifier} changes introduced in 1.21.
+     * Adapts to the {@link ResourceLocation} changes introduced in 1.21.
      */
-    public static Identifier id(String namespace, String path) {
+    public static ResourceLocation id(String namespace, String path) {
         //? if <1.21 {
-        /*return new Identifier(namespace, path);
+        /*return new ResourceLocation(namespace, path);
         *///?} else
-        return Identifier.of(namespace, path);
+        return ResourceLocation.fromNamespaceAndPath(namespace, path);
     }
 }
