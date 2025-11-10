@@ -8,6 +8,13 @@ plugins {
 version = "${property("mod.version")}+${stonecutter.current.version}"
 base.archivesName = property("mod.id") as String
 
+val requiredJava = when {
+    stonecutter.eval(stonecutter.current.version, ">=1.20.6") -> JavaVersion.VERSION_21
+    stonecutter.eval(stonecutter.current.version, ">=1.18") -> JavaVersion.VERSION_17
+    stonecutter.eval(stonecutter.current.version, ">=1.17") -> JavaVersion.VERSION_16
+    else -> JavaVersion.VERSION_1_8
+}
+
 repositories {
     /**
      * Restricts dependency search of the given [groups] to the [maven URL][url],
@@ -38,6 +45,9 @@ dependencies {
 }
 
 loom {
+    fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json") // Useful for interface injection
+    accessWidenerPath = rootProject.file("src/main/resources/template.accesswidener")
+
     decompilerOptions.named("vineflower") {
         options.put("mark-corresponding-synthetics", "1") // Adds names to lambdas - useful for mixins
     }
@@ -51,12 +61,8 @@ loom {
 
 java {
     withSourcesJar()
-    val requiresJava21: Boolean = stonecutter.eval(stonecutter.current.version, ">=1.20.6")
-    val javaVersion: JavaVersion =
-        if (requiresJava21) JavaVersion.VERSION_21
-        else JavaVersion.VERSION_17
-    targetCompatibility = javaVersion
-    sourceCompatibility = javaVersion
+    targetCompatibility = requiredJava
+    sourceCompatibility = requiredJava
 }
 
 tasks {
@@ -74,6 +80,9 @@ tasks {
         )
 
         filesMatching("fabric.mod.json") { expand(props) }
+
+        val mixinJava = "JAVA_${requiredJava.majorVersion}"
+        filesMatching("*.mixins.json") { expand("java" to mixinJava) }
     }
 
     // Builds the version into a shared folder in `build/libs/${mod version}/`
