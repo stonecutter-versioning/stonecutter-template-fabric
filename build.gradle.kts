@@ -75,7 +75,7 @@ tasks {
         val props = mapOf(
             "id" to project.property("mod.id"),
             "name" to project.property("mod.id"),
-            "version" to project.property("mod.id"),
+            "version" to project.property("mod.version"),
             "minecraft" to project.property("mod.mc_dep")
         )
 
