@@ -1,5 +1,5 @@
 plugins {
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom-remap")
 
     // `maven-publish`
     // id("me.modmuss50.mod-publish-plugin")
