@@ -1,7 +1,7 @@
 package com.example;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,7 @@ public class TemplateMod implements ModInitializer {
     // That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger("template");
     public static final String VERSION = /*$ mod_version*/ "0.1.0";
-    public static final String MINECRAFT = /*$ minecraft*/ "1.21.10";
+    public static final String MINECRAFT = /*$ minecraft*/ "1.21.11";
 
     @Override
     public void onInitialize() {
@@ -29,12 +29,12 @@ public class TemplateMod implements ModInitializer {
     }
 
     /**
-     * Adapts to the {@link ResourceLocation} changes introduced in 1.21.
+     * Adapts to the ResourceLocation/Identifier changes introduced in 1.21.
      */
-    public static ResourceLocation id(String namespace, String path) {
+    public static Identifier id(String namespace, String path) {
         //? if <1.21 {
         /*return new ResourceLocation(namespace, path);
         *///?} else
-        return ResourceLocation.fromNamespaceAndPath(namespace, path);
+        return Identifier.fromNamespaceAndPath(namespace, path);
     }
 }
