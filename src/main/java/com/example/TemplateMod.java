@@ -29,7 +29,7 @@ public class TemplateMod implements ModInitializer {
     }
 
     /**
-     * Adapts to the ResourceLocation/Identifier changes introduced in 1.21.
+     * Adapts to the {@link Identifier} changes introduced in 1.21.
      */
     public static Identifier id(String namespace, String path) {
         //? if <1.21 {
