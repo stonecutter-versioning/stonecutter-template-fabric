@@ -33,7 +33,7 @@ public class TemplateMod implements ModInitializer {
      */
     public static Identifier id(String namespace, String path) {
         //? if <1.21 {
-        /*return new ResourceLocation(namespace, path);
+        /*return new Identifier(namespace, path);
         *///?} else
         return Identifier.fromNamespaceAndPath(namespace, path);
     }
