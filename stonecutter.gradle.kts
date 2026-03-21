@@ -1,5 +1,6 @@
 plugins {
     id("dev.kikugie.stonecutter")
+    id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT" apply false
     id("net.fabricmc.fabric-loom-remap") version "1.15-SNAPSHOT" apply false
     // id("me.modmuss50.mod-publish-plugin") version "1.0.+" apply false
 }
@@ -24,6 +25,10 @@ stonecutter parameters {
     replacements {
         string(current.parsed >= "1.21.11") {
             replace("ResourceLocation", "Identifier")
+        }
+
+        string(current.parsed > "26.0") {
+            replace("classTweaker v1 named", "classTweaker v1 official")
         }
     }
 }

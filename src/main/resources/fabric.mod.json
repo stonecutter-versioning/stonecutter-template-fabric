@@ -22,7 +22,7 @@
   "mixins": [
     "template.mixins.json"
   ],
-  "accessWidener": "template.accesswidener",
+  "accessWidener": "template.ct",
   "depends": {
     "fabricloader": ">=0.17",
     "minecraft": "${minecraft}"
