@@ -1,0 +1,32 @@
+# See https://stonecutter.kikugie.dev/wiki/config/properties#centralized-properties
+mod.id = "template"
+mod.name = "Template"
+mod.group = "com.example"
+mod.version = "0.1.0"
+
+deps.fabric_loader = "0.18.4"
+loomx.loom_version = "1.15-SNAPSHOT"
+
+["1.20.1"]
+mod.mc_compat = ">=1.20 <=1.20.1"
+mod.mc_releases = ["1.20", "1.20.1"]
+
+deps.fabric_api = "0.92.7+1.20.1"
+
+["1.21.1"]
+mod.mc_compat = ">=1.21 <=1.21.1"
+mod.mc_releases = ["1.21", "1.21.1"]
+
+deps.fabric_api = "0.116.10+1.21.1"
+
+["1.21.11"]
+mod.mc_compat = "1.21.11"
+mod.mc_releases = ["1.21.11"]
+
+deps.fabric_api = "0.141.3+1.21.11"
+
+["26.1"]
+mod.mc_compat = "~26.1"
+mod.mc_releases = ["26.1", "26.1.1"]
+
+deps.fabric_api = "0.145.3+26.1.1"

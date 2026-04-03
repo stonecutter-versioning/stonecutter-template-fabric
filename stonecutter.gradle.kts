@@ -1,19 +1,8 @@
 plugins {
     id("dev.kikugie.stonecutter")
-    id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT" apply false
-    id("net.fabricmc.fabric-loom-remap") version "1.15-SNAPSHOT" apply false
-    // id("me.modmuss50.mod-publish-plugin") version "1.0.+" apply false
 }
 
-stonecutter active "1.21.11"
-
-/*
-// Make newer versions be published last
-stonecutter tasks {
-    order("publishModrinth")
-    order("publishCurseforge")
-}
- */
+stonecutter active "26.1"
 
 // See https://stonecutter.kikugie.dev/wiki/config/params
 stonecutter parameters {
@@ -27,7 +16,7 @@ stonecutter parameters {
             replace("ResourceLocation", "Identifier")
         }
 
-        string(current.parsed > "26.0") {
+        string(current.parsed >= "26.1") {
             replace("classTweaker v1 named", "classTweaker v1 official")
         }
     }
