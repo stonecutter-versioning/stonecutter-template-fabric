@@ -12,6 +12,7 @@ pluginManagement {
 plugins {
     id("dev.kikugie.stonecutter") version "0.9.1-beta.3"
     id("dev.kikugie.loom-back-compat") version "0.2"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 stonecutter {
