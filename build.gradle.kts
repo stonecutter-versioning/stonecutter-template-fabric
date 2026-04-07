@@ -1,9 +1,6 @@
 @file:OptIn(StonecutterExperimentalAPI::class)
 
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
-import dev.kikugie.stonecutter.util.unwrap
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonPrimitive
 
 plugins {
     // This plugin applies the correct loom variant based on the Minecraft version
@@ -22,8 +19,9 @@ val requiredJava: JavaVersion = when {
     else -> JavaVersion.VERSION_1_8
 }
 
-val compatibleVersions: List<String> = sc.properties.rawOrNull("mod.mc_releases")
-    ?.jsonArray.orEmpty().map { it.jsonPrimitive.unwrap() }
+// This can be used for publishing on Modrinth and Curseforge
+val compatibleVersions: List<String> = sc.properties.rawOrNull("mod", "mc_releases")
+    ?.asList().orEmpty().map { it.toString() }
 
 repositories {
     /**
